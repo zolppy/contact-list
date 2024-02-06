@@ -26,9 +26,11 @@ const addContact = (contact) => {
 }
 
 const removeContact = (event) => {
-  const el = event.target.closest(".contact");
-
-  el.remove();
+  if (confirm("Tem certeza que deseja excluir o contato?")) {
+    const el = event.target.closest(".contact");
+  
+    el.remove();
+  }
 }
 
 const editContact = (event) => {
@@ -42,8 +44,8 @@ const editContact = (event) => {
   const newName = prompt("Novo nome:", oldName);
   const newTelephone = prompt("Novo telefone", oldTelephone);
 
-  nameField.textContent = newName;
-  telephoneField.textContent = newTelephone;
+  nameField.textContent = newName.trim() || oldName;
+  telephoneField.textContent = newTelephone.trim() || oldTelephone;
 }
 
 contactsEl.addEventListener("click", (event) => {
@@ -61,12 +63,28 @@ contactsEl.addEventListener("click", (event) => {
 addContactButton.addEventListener("click", () => {
   const nameInput = document.querySelector("#name-input");
   const telephoneInput = document.querySelector("#telephone-input");
-  const name = nameInput.value;
-  const telephone = telephoneInput.value;
+  const name = nameInput.value.trim();
+  const telephone = telephoneInput.value.trim();
+  
+  try {
+    if (name && telephone) {
+      nameInput.value = "";
+      telephoneInput.value = "";
+      nameInput.focus();
+    
+      addContact(createContact(name, telephone));
+    } else {
+      throw new Error("Campo(s) de entrada não preenchido(s) ou com valor(es) inválido(s)");
+    }
+  } catch (error) {
+    if (!name && !telephone) {
+      alert("Informe o nome e telefone");
+  
+    } else {
+      !name && alert("Informe o nome");
+      !telephone && alert("Informe o telefone");
+    }
 
-  nameInput.value = "";
-  telephoneInput.value = "";
-  nameInput.focus();
-
-  addContact(createContact(name, telephone));
+    console.error(error);
+  }
 })
