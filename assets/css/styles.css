@@ -117,7 +117,7 @@ button:hover {
 .contact {
   border: 1px solid var(--white-low-opacity);
   border-radius: .5em;
-  height: 2.5em;
+  height: 3em;
   padding: .3em;
   display: flex;
   align-items: center;
@@ -129,9 +129,12 @@ button:hover {
   gap: .3em;
 }
 
-button {
+.edit-button,
+.delete-button {
   border-radius: 50%;
-  padding: .3em .5em;
+  height: 1.9em;
+  width: 1.9em;
+  font-size: 1.2rem;
 }
 
 button > i {
