@@ -6,11 +6,11 @@ html {
 
 :root {
   --black: #222;
+  --blue: #66f;
+  --green: #6f6;
+  --red: #f66;
   --white: #eee;
   --white-low-opacity: rgba(255, 255, 255, .5);
-  --green: #6f6;
-  --blue: #66f;
-  --red: #f66;
 }
 
 * {
@@ -26,13 +26,14 @@ body {
 }
 
 #container {
-  min-height: 100vh;
-  max-width: 580px;
-  min-width: 320px;
   background-color: var(--black);
-  padding: .8em;
   font-size: 1rem;
   line-height: 1;
+  margin: 0 auto;
+  max-width: 580px;
+  min-height: 100vh;
+  min-width: 320px;
+  padding: .8em;
 }
 
 #title {
@@ -49,51 +50,55 @@ body {
 
 .input-wrapper {
   display: flex;
-  gap: .5em;
   align-items: center;
+  gap: .5em;
 }
 
 input {
   background-color: transparent;
   border: 1px solid var(--white-low-opacity);
-  color: var(--white);
-  font-size: 1rem;
   border-radius: .4em;
-  height: 2em;
-  padding: .3em;
+  color: var(--white);
   flex-grow: 1;
+  font-size: 1rem;
+  height: 2em;
   outline: none;
+  padding: .3em;
 }
 
 input:focus {
   border-color: var(--blue);
 }
 
-#add-contact-button {
+button {
   background-color: transparent;
-  border: 1px solid var(--green);
-  padding: .5em;
-  border-radius: .5em;
-  color: var(--green);
-  font-size: 1rem;
+  border-style: solid;
+  border-width: 1px;
   font-family: "Roboto", sans-serif;
-  transition: background-color .3s ease;
+  font-size: 1rem;
   outline: none;
+  transition: background-color .3s ease;
 }
 
-#add-contact-button:hover {
-  background-color: var(--green);
-  color: var(--black);
+button:active {
+  transform: scale(.95);
+}
+
+button:hover {
   cursor: pointer;
 }
 
-#add-contact-button:focus {
-  background-color: var(--green);
-  color: var(--black);
+#add-contact-button {
+  color: var(--green);
+  border-color: var(--green);
+  border-radius: .5em;
+  padding: .5em;
 }
 
-#add-contact-button:active {
-  transform: scale(.95);
+#add-contact-button:focus,
+#add-contact-button:hover {
+  background-color: var(--green);
+  color: var(--black);
 }
 
 #contacts {
@@ -104,9 +109,9 @@ input:focus {
 
 .contact {
   border: 1px solid var(--white-low-opacity);
-  padding: .3em;
-  height: 2.5em;
   border-radius: .5em;
+  height: 2.5em;
+  padding: .3em;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -118,57 +123,35 @@ input:focus {
 }
 
 button {
-  background-color: transparent;
-  border-width: 1px;
-  border-style: solid;
-  font-size: 1rem;
-  padding: .3em .5em;
   border-radius: 50%;
-  outline: none;
-}
-
-.edit-button {
-  color: var(--blue);
-  border-color: var(--blue);
-  transition: background-color .3s ease;
-}
-
-.edit-button:hover {
-  cursor: pointer;
-  background-color: var(--blue);
-  color: var(--white);
-}
-
-.edit-button:focus {
-  background-color: var(--blue);
-  color: var(--white);
-}
-
-.edit-button:active {
-  transform: scale(.95);
-}
-
-.delete-button {
-  color: var(--red);
-  border-color: var(--red);
-  transition: background-color .3s ease;
-}
-
-.delete-button:hover {
-  cursor: pointer;
-  background-color: var(--red);
-  color: var(--white);
-}
-
-.delete-button:focus {
-  background-color: var(--red);
-  color: var(--white);
-}
-
-.delete-button:active {
-  transform: scale(.95);
+  padding: .3em .5em;
 }
 
 button > i {
   pointer-events: none;
+}
+
+button:focus,
+button:hover {
+  color: var(--white);
+}
+
+.edit-button {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.edit-button:focus,
+.edit-button:hover {
+  background-color: var(--blue);
+}
+
+.delete-button {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.delete-button:focus,
+.delete-button:hover {
+  background-color: var(--red);
 }
