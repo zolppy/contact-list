@@ -78,10 +78,17 @@ button {
   font-size: 1rem;
   outline: none;
   transition: background-color .3s ease;
+  -moz-transition: background-color .3s ease;
+  -o-transition: background-color .3s ease;
+  -webkit-transition: background-color .3s ease;
 }
 
 button:active {
   transform: scale(.95);
+  -moz-transform: scale(.95);
+  -ms-transform: scale(.95);
+  -o-transform: scale(.95);
+  -webkit-transform: scale(.95);
 }
 
 button:hover {
