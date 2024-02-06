@@ -7,6 +7,10 @@ html {
 :root {
   --black: #222;
   --white: #eee;
+  --white-low-opacity: rgba(255, 255, 255, .5);
+  --green: #6f6;
+  --blue: #66f;
+  --red: #f66;
 }
 
 * {
@@ -16,7 +20,151 @@ html {
 }
 
 body {
-  background-color: var(--white);
-  color: var(--black);
+  background-color: #000;
+  color: var(--white);
   font-family: "Roboto", sans-serif;
+}
+
+#container {
+  min-height: 100vh;
+  max-width: 580px;
+  min-width: 320px;
+  background-color: var(--black);
+  padding: .8em;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+#title {
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+#add-contact-wrapper {
+  margin: 2em 0;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: .5em;
+  align-items: center;
+}
+
+input {
+  background-color: transparent;
+  border: 1px solid var(--white-low-opacity);
+  color: var(--white);
+  font-size: 1rem;
+  border-radius: .4em;
+  height: 2em;
+  padding: .3em;
+  flex-grow: 1;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--blue);
+}
+
+#add-contact-button {
+  background-color: transparent;
+  border: 1px solid var(--green);
+  padding: .5em;
+  border-radius: .5em;
+  color: var(--green);
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  transition: background-color .3s ease;
+  outline: none;
+}
+
+#add-contact-button:hover {
+  background-color: var(--green);
+  color: var(--black);
+  cursor: pointer;
+}
+
+#add-contact-button:focus {
+  background-color: var(--green);
+  color: var(--black);
+}
+
+#add-contact-button:active {
+  transform: scale(.95);
+}
+
+#contacts {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.contact {
+  border: 1px solid var(--white-low-opacity);
+  padding: .3em;
+  height: 2.5em;
+  border-radius: .5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttons-wrapper {
+  display: flex;
+  gap: .3em;
+}
+
+button {
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 1rem;
+  padding: .3em .5em;
+  border-radius: 50%;
+  outline: none;
+}
+
+.edit-button {
+  color: var(--blue);
+  border-color: var(--blue);
+  transition: background-color .3s ease;
+}
+
+.edit-button:hover {
+  cursor: pointer;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.edit-button:focus {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.edit-button:active {
+  transform: scale(.95);
+}
+
+.delete-button {
+  color: var(--red);
+  border-color: var(--red);
+  transition: background-color .3s ease;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.delete-button:focus {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.delete-button:active {
+  transform: scale(.95);
 }
