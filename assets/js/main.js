@@ -32,7 +32,18 @@ const removeContact = (event) => {
 }
 
 const editContact = (event) => {
-  console.log(event);
+  const contactEl = event.target.closest(".contact");
+  const nameField = contactEl.querySelector(".name");
+  const telephoneField = contactEl.querySelector(".telephone");
+
+  const oldName = nameField.textContent;
+  const oldTelephone = telephoneField.textContent;
+
+  const newName = prompt("Novo nome:", oldName);
+  const newTelephone = prompt("Novo telefone", oldTelephone);
+
+  nameField.textContent = newName;
+  telephoneField.textContent = newTelephone;
 }
 
 contactsEl.addEventListener("click", (event) => {
