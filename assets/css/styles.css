@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+html {
+  font-size: 16px;
+}
+
+:root {
+  --black: #222;
+  --white: #eee;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: "Roboto", sans-serif;
+}
