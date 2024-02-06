@@ -1,3 +1,7 @@
+// O código, no geral, precisa ser refatorado
+
+const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
 const contactsEl = document.querySelector("#contacts");
 const addContactButton = document.querySelector("#add-contact-button");
 
@@ -28,8 +32,16 @@ const addContact = (contact) => {
 const removeContact = (event) => {
   if (confirm("Tem certeza que deseja excluir o contato?")) {
     const el = event.target.closest(".contact");
+    // const name = el.querySelector(".name").textContent;
+    // const telephone = el.querySelector(".telephone").textContent;
   
     el.remove();
+  }
+}
+
+const updateLocalStorage = () => {
+  if (contacts.length > 0) {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
   }
 }
 
@@ -58,7 +70,7 @@ contactsEl.addEventListener("click", (event) => {
   if (el.classList.contains("delete-button")) {
     removeContact(event);
   }
-})
+});
 
 addContactButton.addEventListener("click", () => {
   const nameInput = document.querySelector("#name-input");
@@ -73,6 +85,8 @@ addContactButton.addEventListener("click", () => {
       nameInput.focus();
     
       addContact(createContact(name, telephone));
+      contacts.push({ name: name, tel: telephone });
+      updateLocalStorage();
     } else {
       throw new Error("Campo(s) de entrada não preenchido(s) ou com valor(es) inválido(s)");
     }
@@ -87,4 +101,12 @@ addContactButton.addEventListener("click", () => {
 
     console.error(error);
   }
-})
+});
+
+window.addEventListener("load", () => {
+  if (contacts.length > 0) {
+    contacts.forEach((contact) => {
+      addContact(createContact(contact.name, contact.tel));
+    })
+  }
+});
