@@ -1,5 +1,3 @@
-// O código, no geral, precisa ser refatorado
-
 const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
 
 const contactsEl = document.querySelector("#contacts");
@@ -38,16 +36,13 @@ const removeContact = (event) => {
       contact.name === name && contact.tel === telephone
     ));
 
+    console.log(contacts);
+    console.log(name, telephone);
+
     contacts.splice(index, 1);
     el.remove();
 
     updateLocalStorage();
-  }
-}
-
-const updateLocalStorage = () => {
-  if (contacts.length > 0) {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
   }
 }
 
@@ -59,11 +54,36 @@ const editContact = (event) => {
   const oldName = nameField.textContent;
   const oldTelephone = telephoneField.textContent;
 
-  const newName = prompt("Novo nome:", oldName);
-  const newTelephone = prompt("Novo telefone", oldTelephone);
+  const newName = prompt("Novo nome:", oldName) || "";
+  const newTel = prompt("Novo telefone", oldTelephone) || "";
 
-  nameField.textContent = newName.trim() || oldName;
-  telephoneField.textContent = newTelephone.trim() || oldTelephone;
+  const newNameTreated = newName.trim();
+  const newTelTreated = newTel.trim();
+
+  if (newNameTreated) {
+    contacts.forEach((contact) => {
+      if (contact.name === oldName) {
+        contact.name = newNameTreated;
+      }
+    });
+  }
+
+  if (newTelTreated) {
+    contacts.forEach((contact) => {
+      if (contact.tel === oldTelephone) {
+        contact.tel = newTelTreated;
+      }
+    });
+  }
+
+  nameField.textContent = newNameTreated || oldName;
+  telephoneField.textContent = newTelTreated || oldTelephone;
+
+  updateLocalStorage();
+}
+
+const updateLocalStorage = () => {
+  localStorage.setItem("contacts", JSON.stringify(contacts));
 }
 
 contactsEl.addEventListener("click", (event) => {
