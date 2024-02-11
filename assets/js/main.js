@@ -32,10 +32,16 @@ const addContact = (contact) => {
 const removeContact = (event) => {
   if (confirm("Tem certeza que deseja excluir o contato?")) {
     const el = event.target.closest(".contact");
-    // const name = el.querySelector(".name").textContent;
-    // const telephone = el.querySelector(".telephone").textContent;
-  
+    const name = el.querySelector(".name").textContent;
+    const telephone = el.querySelector(".telephone").textContent;
+    const index = contacts.findIndex((contact) => (
+      contact.name === name && contact.tel === telephone
+    ));
+
+    contacts.splice(index, 1);
     el.remove();
+
+    updateLocalStorage();
   }
 }
 
